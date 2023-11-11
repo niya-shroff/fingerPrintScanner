@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input } from 'react-form-component';
 import SendFormData from './SendFormData';
 
 const MyFormComponent = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', spire: ''});
+  const [formData, setFormData] = useState({ name: '', email: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,39 +13,34 @@ const MyFormComponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    SendFormData(formData)
-    navigate('/results');
+    try {
+      SendFormData(formData)
+      navigate('/results');
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input onChange={handleChange}
-        name='firstName'
-        type='name'
-        value={formData.spire}
-        label='First Name'
-      />
-      <Input onChange={handleChange}
-        name='lastName'
-        type='name'
-        value={formData.lastName}
-        label='Last Name'
-      />
-      <Input onChange={handleChange}
-        name='email'
-        type='email'
-        value={formData.email}
-        label='E-mail Address'
-      />
-      <Input onChange={handleChange}
-        name='spire'
-        type='number'
-        value={formData.spire}
-        label='Spire ID'
-      />
-      <button type="submit">Save</button>
+      <label>
+        Name: 
+        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Email: 
+        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        SPIRE ID: 
+        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+      </label>
+      <br />
+      <button type="submit">Sign In</button>
     </form>
-  )
+  );
 };
 
 export default MyFormComponent;

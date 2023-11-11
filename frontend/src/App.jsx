@@ -1,6 +1,5 @@
 import { FormThemeProvider } from 'react-form-component'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
-import InputForm from './components/InputForm'
 import ScannedDisplay from './components/ScannedDisplay'
 import './App.css'
 import MyFormComponent from './components/MyFormComponent'
