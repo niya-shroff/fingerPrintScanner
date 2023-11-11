@@ -1,9 +1,12 @@
+import { FormThemeProvider } from 'react-form-component'
+import InputForm from './components/InputForm'
 import './App.css'
 
 function App() {
-
   return (
-    <h1>Vite + React</h1>
+    <FormThemeProvider>
+      <InputForm />
+  </FormThemeProvider>
   )
 }
 
