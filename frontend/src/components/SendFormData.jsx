@@ -3,7 +3,7 @@ import axios from 'axios'
 const SendFormData = (data) => {
     axios({
         method: "post",
-        url: "localhost:3000",
+        url: "http://127.0.0.1:5000",
         data: data,
       })
         .then(function (response) {

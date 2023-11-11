@@ -10,3 +10,5 @@ def addPerson(name, email):
     db = client["people"]
     col = db["students"]
     col.insert_one(person)
+
+addPerson("Niya", "shroffniya@gmail.com")

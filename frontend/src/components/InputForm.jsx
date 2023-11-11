@@ -1,4 +1,4 @@
-import Form, {Input, Select, FormButton} from 'react-form-component'
+import Form, {Input, FormButton} from 'react-form-component'
 import SendFormData from './SendFormData'
 
 const InputForm = () =>
@@ -12,11 +12,10 @@ const InputForm = () =>
       type='email'
       label='E-mail'
     />
-    <Select
-      name='type'
+    {/* <Select
       label='Type of a user'
       options={['Viewer', 'Moderator', 'Admin']}
-    />
+    /> */}
     <FormButton
       onClick={data => 
         SendFormData(data)
