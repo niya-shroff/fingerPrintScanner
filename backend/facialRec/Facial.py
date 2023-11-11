@@ -7,10 +7,10 @@ from datetime import datetime
 # scpCommand = 'scp raspberrypi@192.168.111.169:~/Desktop/Camera/test.jpeg ./Desktop/Projects/fingerPrintScanner/backend/facialRec/ImagesAttendance'
 # os.system(scpCommand)
 
-path = 'ImagesAttendance'                                                         #image directory is taken
+path = 'backend/facialRec/ImagesAttendance'                                                         #image directory is taken
 images = []                                                                       #list of images to import to store in the list
 classNames = []                                                                   #to take the names directly from the image file name
-myList = os.listdir('ImagesAttendance')                                                        #to grab the list of images in to the folder
+myList = os.listdir(path)                                                        #to grab the list of images in to the folder
 print(myList)                                                                     #to print the list of names
 for cl in myList:                                                                 #to import the images one by one
     curImg = cv2.imread(f'{path}/{cl}')                                           #to read the image with file path
@@ -54,6 +54,8 @@ while True:
             cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
             cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
             cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
+            #break
+            markAttendance(name)
 
     cv2.imshow('Webcam', img)
     cv2.waitKey(1)
