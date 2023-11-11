@@ -1,12 +1,20 @@
 import { FormThemeProvider } from 'react-form-component'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import InputForm from './components/InputForm'
+import ScannedDisplay from './components/ScannedDisplay'
 import './App.css'
+import MyFormComponent from './components/MyFormComponent'
 
 function App() {
+
   return (
-    <FormThemeProvider>
-      <InputForm />
-  </FormThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<FormThemeProvider><MyFormComponent/></FormThemeProvider>} />
+        <Route path="/results" element={<ScannedDisplay></ScannedDisplay>} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
