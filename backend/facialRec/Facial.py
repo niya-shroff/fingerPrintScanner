@@ -8,6 +8,9 @@ from datetime import datetime
 # scpCommand = 'scp raspberrypi@192.168.111.169:~/Desktop/Camera/test.jpeg ./Desktop/Projects/fingerPrintScanner/backend/facialRec/ImagesAttendance'
 # os.system(scpCommand)
 
+# get images from database
+# convert the string to images
+# store those images in folder
 client = MongoClient("mongodb+srv://mkandeshwara:1234@printscanner.mgav5zb.mongodb.net/?retryWrites=true&w=majority")
 db = client["people"]
 col = db["students"]
