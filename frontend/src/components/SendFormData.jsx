@@ -4,7 +4,7 @@ const SendFormData = (data) => {
     console.log(data)
     axios({
         method: "post",
-        url: "localhost:3000",
+        url: "http://127.0.0.1:5000/",
         data: data,
         withCredentials: false,
         headers: {
@@ -14,12 +14,12 @@ const SendFormData = (data) => {
           "Access-Control-Allow-Headers": 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
           }
       })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (response) {
-          console.log(response);
-        });
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
 }
 
 export default SendFormData

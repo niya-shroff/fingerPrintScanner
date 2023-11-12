@@ -4,7 +4,7 @@ import SendFormData from './SendFormData';
 
 const MyFormComponent = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [formData, setFormData] = useState({ name: '', email: '' , spire: ''});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +35,7 @@ const MyFormComponent = () => {
       <br />
       <label>
         SPIRE ID: 
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+        <input type="number" name="spire" value={formData.spire} onChange={handleChange} />
       </label>
       <br />
       <button type="submit">Sign In</button>
