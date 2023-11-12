@@ -1,22 +1,26 @@
 import cv2
 import numpy as np
 import face_recognition
+from pymongo.mongo_client import MongoClient
 import os
 from datetime import datetime
 
 # scpCommand = 'scp raspberrypi@192.168.111.169:~/Desktop/Camera/test.jpeg ./Desktop/Projects/fingerPrintScanner/backend/facialRec/ImagesAttendance'
 # os.system(scpCommand)
 
-path = 'backend/facialRec/ImagesAttendance'                                                         #image directory is taken
+client = MongoClient("mongodb+srv://mkandeshwara:1234@printscanner.mgav5zb.mongodb.net/?retryWrites=true&w=majority")
+db = client["people"]
+col = db["students"]
+
+#path = 'backend/facialRec/ImagesAttendance'                                                         #image directory is taken
 images = []                                                                       #list of images to import to store in the list
-classNames = []                                                                   #to take the names directly from the image file name
-myList = os.listdir(path)                                                        #to grab the list of images in to the folder
-print(myList)                                                                     #to print the list of names
-for cl in myList:                                                                 #to import the images one by one
+#classNames = []                                                                   #to print the list of names
+for cl in col.find():                                                                 #to import the images one by one
     curImg = cv2.imread(f'{path}/{cl}')                                           #to read the image with file path
     images.append(curImg)                                                         # appending images from the list to path
     classNames.append(os.path.splitext(cl)[0])
 print(classNames)
+
 
 
 def findEncodings(images):
@@ -51,9 +55,11 @@ while True:
             name = classNames[matchIndex].upper()
             y1, x2, y2, x1 = faceLoc
             y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
-            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
-            cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
+            #cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            #cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+            
+            cv2.circle(img, (int((x1+x2)/2), int((y1+y2)/2)-10), int(abs((x1-x2)/2)+10), (255, 255, 255), 2)
+            cv2.putText(img, name, (x1 + 6, y2 + 30), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
             #break
             markAttendance(name)
 
