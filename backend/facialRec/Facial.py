@@ -12,15 +12,13 @@ client = MongoClient("mongodb+srv://mkandeshwara:1234@printscanner.mgav5zb.mongo
 db = client["people"]
 col = db["students"]
 
-#path = 'backend/facialRec/ImagesAttendance'                                                         #image directory is taken
 images = []                                                                       #list of images to import to store in the list
-#classNames = []                                                                   #to print the list of names
-for cl in col.find():                                                                 #to import the images one by one
-    curImg = cv2.imread(f'{path}/{cl}')                                           #to read the image with file path
+classNames = []                                                                   #to print the list of names
+for cl in col.find():                                                              #to import the images one by one
+    curImg = cl["image"]                                                           #to read the image with file path
     images.append(curImg)                                                         # appending images from the list to path
     classNames.append(os.path.splitext(cl)[0])
 print(classNames)
-
 
 
 def findEncodings(images):
@@ -61,7 +59,6 @@ while True:
             cv2.circle(img, (int((x1+x2)/2), int((y1+y2)/2)-10), int(abs((x1-x2)/2)+10), (255, 255, 255), 2)
             cv2.putText(img, name, (x1 + 6, y2 + 30), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
             #break
-            markAttendance(name)
 
     cv2.imshow('Webcam', img)
     cv2.waitKey(1)

@@ -24,4 +24,4 @@ def decode_image():
     return "Completed! Image is now loaded as test.jpg!" # change name 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000) 
+    app.run() 
